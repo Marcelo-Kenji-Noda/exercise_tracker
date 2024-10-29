@@ -1,3 +1,4 @@
 # excercise-tracker
 
-Teste
+## To run backend
+    npm run dev
