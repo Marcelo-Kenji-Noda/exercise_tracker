@@ -3,6 +3,17 @@ import BodyPart from "../models/bodypart.model.js";
 
 import mongoose from "mongoose";
 
+export const getSingleExercise = async (req, res) => {
+  const {id} = req.params;
+  try {
+      const exercise = await Exercise.findById(id);
+      res.status(200).json({success:true, data:exercise});
+  } catch (error) {
+      console.log("error in fetching bodyparts:", error.message);
+      res.status(500).json({success:false, message: "Server Error"})
+  }
+}
+
 export const getExercises = async (req, res) => {
     try {
         const exercises = await Exercise.find({});

@@ -1,6 +1,17 @@
 import BodyPart from "../models/bodypart.model.js";
 import mongoose from "mongoose";
 
+export const getSingleBodyPart = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const bodypart = await BodyPart.findById(id);
+        res.status(200).json({success:true, data:bodypart});
+    } catch (error) {
+        console.log("error in fetching bodyparts:", error.message);
+        res.status(500).json({success:false, message: "Server Error"})
+    }
+}
+
 export const getBodyParts = async (req, res) => {
     try {
         const bodyparts = await BodyPart.find({});
