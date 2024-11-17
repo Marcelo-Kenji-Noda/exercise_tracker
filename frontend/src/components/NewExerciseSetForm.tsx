@@ -50,7 +50,7 @@ function NewExerciseSetForm({_id = "", exerciseSetName="", exerciseList = [], se
     const [currentSetExerciseName, setCurrentSetExerciseName] = useState<string>(exerciseSetName)
     const [filterAvailableExercise, setFilterAvailableExercise] = useState<string>("");
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [exerciseSetId, setExerciseSetId] = useState<string>(_id)
+    const [exerciseSetId, _setExerciseSetId] = useState<string>(_id)
     const {createExerciseSet, updateExerciseSet} = useExerciseSet();
     /* Teste */
     /*  */

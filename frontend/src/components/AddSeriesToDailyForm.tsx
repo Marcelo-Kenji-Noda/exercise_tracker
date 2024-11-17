@@ -1,10 +1,10 @@
 import { Autocomplete, Box, Container, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
 
 import { Dayjs } from 'dayjs';
 import { StyledButton } from '../styles/styledComponents';
 import { useDaily } from '../store/daily';
 import { useExerciseSet } from '../store/exerciseset';
+import { useState } from 'react';
 
 type AddSeriesToDailyFormProps = {
     currentDate?: Dayjs | null;

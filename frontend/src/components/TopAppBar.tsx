@@ -1,5 +1,5 @@
 import { AppBar, Box, Button, IconButton, Menu, MenuItem, Theme, Toolbar, Typography, useMediaQuery } from '@mui/material'
-import React, {MouseEvent, useState} from 'react'
+import {MouseEvent, useState} from 'react'
 
 import {Link} from 'react-router-dom'
 import MoreVertIcon from '@mui/icons-material/MoreVert';

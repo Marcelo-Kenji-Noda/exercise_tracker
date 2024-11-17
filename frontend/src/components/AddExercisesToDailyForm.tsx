@@ -1,10 +1,10 @@
 import { Autocomplete, Box, Container, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
 
 import { Dayjs } from 'dayjs';
 import { StyledButton } from '../styles/styledComponents';
 import { useDaily } from '../store/daily';
 import { useExercises } from '../store/exercises';
+import { useState } from 'react';
 
 type AddExercisesToDailyFormProps = {
     currentDate: Dayjs | null;
@@ -46,7 +46,7 @@ function AddExercisesToDailyForm({ currentDate, addedExercises = [] }: AddExerci
                     <Autocomplete
                         options={exercises.filter((val) => !addedExercises.includes(val._id))}
                         getOptionLabel={(option) => option.name}
-                        onChange={(event, newValue) => setSelectedExercise(newValue?._id || "")}
+                        onChange={(_event, newValue) => setSelectedExercise(newValue?._id || "")}
                         renderInput={(params) => (
                             <TextField {...params} label="Select Exercise" helperText="Please select an exercise" />
                         )}

@@ -1,5 +1,5 @@
 import { Box, FormControlLabel, Switch, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { LineChart } from '@mui/x-charts/LineChart';
 

@@ -1,7 +1,7 @@
-import React from 'react'
 import { Daily } from '../store/daily'
-import { List } from '@mui/material'
 import DailyListItem from './DailyListItem'
+import { List } from '@mui/material'
+
 type DailyListProps = {
     dailyList: Daily[]
 }

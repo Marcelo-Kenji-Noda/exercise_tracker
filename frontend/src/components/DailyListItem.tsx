@@ -1,9 +1,9 @@
 import { Box, IconButton, ListItem, ListItemText } from '@mui/material'
 import { Daily, useDaily } from '../store/daily'
-import React, { useEffect } from 'react'
 
 import DeleteIcon from '@mui/icons-material/Delete'
 import RepsBox from './RepsBox'
+import { useEffect } from 'react'
 import { useExercises } from '../store/exercises'
 import { useState } from 'react'
 
