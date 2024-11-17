@@ -1,4 +1,5 @@
 import bodypartRoutes from "./routes/bodypart.route.js"
+import compression from 'compression';
 import { connectDB } from './config/db.js';
 import dailyRoutes from "./routes/daily.route.js"
 import dotenv from "dotenv";
@@ -11,9 +12,12 @@ import statisticsRoutes from './routes/statistics.route.js'
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 const __dirname = path.resolve();
 
 app.use(express.json());
+app.use(compression());
 
 app.use("/api/bodyparts", bodypartRoutes);
 
@@ -35,7 +39,7 @@ if (process.env.NODE_ENV === "production"){
 
 app.listen(5000, ()=>{
     connectDB();
-    console.log("Server started at http://localhost:5000")
+    console.log("Server started at http://localhost:"+PORT);
 })
 
 //

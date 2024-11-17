@@ -1,13 +1,16 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, ThemeProvider, Toolbar, createTheme } from '@mui/material';
 
-import ExercisePage from './pages/ExercisePage';
-import ExerciseSet from './pages/ExerciseSet';
-import HomePage from './pages/HomePage';
-import Statistics from './pages/Statistics';
 import { StrictMode } from 'react';
 import TopAppBar from './components/TopAppBar';
 import { createRoot } from 'react-dom/client';
+import { lazy } from 'react';
+
+const HomePage = lazy(() => import('./pages/HomePage'));
+const ExerciseSet = lazy(() => import('./pages/ExerciseSet'));
+const ExercisePage = lazy(() => import('./pages/ExercisePage'));
+const Statistics = lazy(() => import('./pages/Statistics'));
+
 
 // Cria o tema com a fonte Roboto
 const theme = createTheme({
