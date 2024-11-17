@@ -6,8 +6,14 @@ const dailySchema = new mongoose.Schema({
         default: Date.now,
         required: true
     },
-    exercises: [
-        {type: mongoose.Schema.Types.ObjectId, ref: "ExerciseUnit", default:[]}
+    exercise:{
+        type: mongoose.Schema.Types.ObjectId, ref: "ExerciseUnit", default:[]
+    },
+    reps: [
+        {
+            type: Number,
+            default: [0]
+        }
     ]
 })
 

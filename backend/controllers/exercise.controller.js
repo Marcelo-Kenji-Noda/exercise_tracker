@@ -16,7 +16,7 @@ export const getSingleExercise = async (req, res) => {
 
 export const getExercises = async (req, res) => {
     try {
-        const exercises = await Exercise.find({});
+        const exercises = await Exercise.find({}).sort({ name: 1 });
         res.status(200).json({success:true, data:exercises});
     } catch (error) {
         console.log("error in fetching exercises:", error.message);
@@ -39,7 +39,7 @@ export const createExercise = async (req, res) => {
       // Criar o exercício caso todas as tags sejam válidas
       const exercise = new Exercise({ name, tags });
       await exercise.save();
-      res.status(201).json(exercise);
+      return res.status(201).json({success:true, data:exercise});
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
@@ -54,6 +54,27 @@ export const deleteExercise = async (req, res) =>{
         res.status(404).json({success:false, message: "Body part not found"})
     }
 }
+
+export const deleteMultipleExercises = async (req, res) => {
+  const { ids } = req.body; // Espera um array de IDs no corpo da requisição
+  try {
+      // Checa se 'ids' é uma lista válida
+      if (!Array.isArray(ids) || ids.length === 0) {
+          return res.status(400).json({ success: false, message: "No IDs provided" });
+      }
+
+      // Deleta todos os exercícios com IDs fornecidos
+      const result = await Exercise.deleteMany({ _id: { $in: ids } });
+      
+      if (result.deletedCount === 0) {
+          return res.status(404).json({ success: false, message: "No exercises found to delete" });
+      }
+
+      res.status(200).json({ success: true, message: `${result.deletedCount} Exercises deleted` });
+  } catch (error) {
+      res.status(500).json({ success: false, message: "Error deleting exercises", error });
+  }
+};
 
 export const updateExercise = async (req, res) => {
     const { id } = req.params;

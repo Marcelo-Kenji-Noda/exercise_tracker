@@ -30,7 +30,7 @@ export const createExerciseSet = async (req, res) => {
       console.log(`Exercises: ${exercises}`)
       // Verificar se todos os IDs das tags existem na coleção BodyPart
       if (exercises && exercises.length > 0) {
-        const exercisesFind = await Exercise.find({ _id: { $in: tags } });
+        const exercisesFind = await Exercise.find({ _id: { $in: exercises } });
         if (exercisesFind.length !== exercises.length) {
           return res.status(400).json({ error: "Alguma(s) exercise set não existe(m)." });
         }
@@ -39,7 +39,7 @@ export const createExerciseSet = async (req, res) => {
       // Criar o exercício caso todas as tags sejam válidas
       const exerciseset = new ExerciseSet({ name, exercises });
       await exerciseset.save();
-      res.status(201).json(exerciseset);
+      res.status(201).json({success:true, data:exerciseset});
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
@@ -58,8 +58,6 @@ export const deleteExerciseSet = async (req, res) =>{
 export const updateExerciseSet = async (req, res) => {
     const { id } = req.params;
     const { exercises, ...exerciseData } = req.body;
-    console.log(`Body: ${req.body}`)
-    console.log(`Exercises data: ${exercises}`)
     try {
       // Se tags forem fornecidas, verifique se todos os IDs são válidos
       if (exercises && exercises.length > 0) {
@@ -71,7 +69,6 @@ export const updateExerciseSet = async (req, res) => {
   
       // Atualizar o exercício se todas as tags forem válidas
       const updatedExercise = await ExerciseSet.findByIdAndUpdate(id, { ...exerciseData, exercises }, { new: true });
-      console.log("Updated exercises", updatedExercise)
       res.status(200).json({ success: true, data: updatedExercise });
     } catch (error) {
       res.status(500).json({ success: false, message: "Server Error" });
